@@ -2,7 +2,7 @@
 
 Pasos a seguir para instalar server
 
-* Instalar Node.js
+* Instalar Node.js (puse en el server todos los modulos que se usan, sino era mucho para que instalen)
 * Instalar MySQL
 * Claramente bajarse el proyecto
 * Ejecutar archivo RestoGo.sql para crear clases
