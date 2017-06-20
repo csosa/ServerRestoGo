@@ -22,7 +22,7 @@ app.use('/', routes);
 app.use('/Clientes', clientes);
 app.use('/Pedido', pedidos);
 
-var serviceAccount = require("C:/Users/user/Desktop/ServerPrueba-master/RestoGo-b5cf9783da9b.json");
+var serviceAccount = require("./RestoGo-b5cf9783da9b.json");
 
 // Initialize the app with a service account, granting admin privileges
 firebase.initializeApp({
