@@ -39,6 +39,7 @@ function listenForNotificationRequests() {
     sendNotificationToUser(
       request.username, 
       request.message,
+      request.titulo,
       function() {
         requestSnapshot.ref.remove();
       }
@@ -48,8 +49,10 @@ function listenForNotificationRequests() {
   });
 };
 
-function sendNotificationToUser(username, message, onSuccess) {
+function sendNotificationToUser(username, message, titulo, onSuccess) {
 	console.log("Token: "+username);
+  console.log("Mapa info: "+message.text);
+  console.log("Mapa info: "+message.data);
   request({
     url: 'https://fcm.googleapis.com/fcm/send',
     method: 'POST',
@@ -58,9 +61,10 @@ function sendNotificationToUser(username, message, onSuccess) {
       'Authorization': 'key=AAAAb18ayaQ:APA91bHp_Ekfl3pt8a39TbyyYH5yPrrTxQZ25_0-pMQQyr7lDoCvyknCwabpQ-Jtrr3WVMTdZU5pJgA-F__RRyPdPimtVIZZbiWHY_jQzfkTb_dfoa0VyH7mM4RYFFxhPRHp0vQaRXj5'
     },
     body: JSON.stringify({ 
-    	"notification": {
-    		"title": "Nuevo pedido!",
-    		"text": message
+    	"data": {
+    		"title": titulo,
+    		"text": message.text,
+        "body": message.data
  		 },
   		"to" : username
 	})
