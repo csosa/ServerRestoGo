@@ -37,7 +37,7 @@ function listenForNotificationRequests() {
   requests.on('child_added', function(requestSnapshot) {
     var request = requestSnapshot.val();
     sendNotificationToUser(
-      request.username, 
+      request.token,
       request.message,
       request.titulo,
       function() {
@@ -49,10 +49,10 @@ function listenForNotificationRequests() {
   });
 };
 
-function sendNotificationToUser(username, message, titulo, onSuccess) {
-	console.log("Token: "+username);
-  console.log("Mapa info: "+message.text);
-  console.log("Mapa info: "+message.data);
+function sendNotificationToUser(token, message, titulo, onSuccess) {
+	console.log("Token: "+token);
+  console.log("Informacion notificacion: "+message.text);
+  console.log("Data: "+message.data);
   request({
     url: 'https://fcm.googleapis.com/fcm/send',
     method: 'POST',
@@ -66,7 +66,7 @@ function sendNotificationToUser(username, message, titulo, onSuccess) {
     		"text": message.text,
         "body": message.data
  		 },
-  		"to" : username
+  		"to" : token
 	})
   }, function(error, response, body) {
     if (error) { console.error("Error send:"+error); }

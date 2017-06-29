@@ -5,11 +5,13 @@ var Cliente = require('../models/Cliente');
 router.get('/:email?',function(req,res,next){
 
     if(req.params.email){
-        Cliente.getClienteById(req.params.token,function(err,rows){
+        Cliente.getClienteById(req.params.email,function(err,rows){
             if(err){
+                console.log("Consulta por el cliente error:");
                 res.json(err);
             }
             else{
+                console.log("Consulta por el cliente ok");
                 res.json(rows);
             }
         });
@@ -21,7 +23,7 @@ router.get('/:email?',function(req,res,next){
                 res.json(err);
             }
             else{
-                rowses.json(rows);
+                res.json(rows);
             }
  
         });

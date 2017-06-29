@@ -7,7 +7,7 @@ getAllClientes:function(callback){
 },
 
 getClienteById:function(id, callback){
-	 console.log(id);
+	 console.log("Consulta por el cliente:"+id);
 	return db.query("select token from cliente where email=?",[id],callback);
 },
 
