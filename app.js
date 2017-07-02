@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 var cors=require('cors');
 var routes = require('./routes/index');
 var clientes=require('./routes/Clientes');
-var pedidos=require('./routes/Pedido');
 var app = express();
 var firebase = require("firebase-admin");
 var request = require('request');
@@ -20,7 +19,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/Clientes', clientes);
-app.use('/Pedido', pedidos);
 
 var serviceAccount = require("./RestoGo-b5cf9783da9b.json");
 
@@ -50,9 +48,11 @@ function listenForNotificationRequests() {
 };
 
 function sendNotificationToUser(token, message, titulo, onSuccess) {
+  console.log("-------------------------------------------------------------------------");
 	console.log("Token: "+token);
   console.log("Informacion notificacion: "+message.text);
   console.log("Data: "+message.data);
+  console.log("-------------------------------------------------------------------------");
   request({
     url: 'https://fcm.googleapis.com/fcm/send',
     method: 'POST',

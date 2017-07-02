@@ -22,29 +22,10 @@ USE `RestoGo` ;
 -- Table `RestoGo`.`Cliente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `RestoGo`.`Cliente` (
-  `email` VARCHAR(45) NOT NULL,
+  `ussid` VARCHAR(45) NOT NULL,
   `token` VARCHAR(200) NOT NULL,
-  PRIMARY KEY (`email`))
+  PRIMARY KEY (`ussid`))
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `RestoGo`.`Pedido`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `RestoGo`.`Pedido` (
-  `idPedido` INT NOT NULL,
-  `TokenRestaurante` VARCHAR(45) NOT NULL,
-  `Cliente_email` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idPedido`),
-  CONSTRAINT `fk_Pedido_Cliente`
-    FOREIGN KEY (`Cliente_email`)
-    REFERENCES `RestoGo`.`Cliente` (`email`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_Pedido_Cliente_idx` ON `RestoGo`.`Pedido` (`Cliente_email` ASC);
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
